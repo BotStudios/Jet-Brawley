@@ -1,0 +1,30 @@
+{
+  "name": "test-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BotStudios/Jet-Brawley.git"
+  },
+  "keywords": [],
+  "author": "Lee Chee Yong <tojoeleeofficial@gmail.com> (https://joe.js.org)",
+  "license": "SEE /LICENSE",
+  "bugs": {
+    "url": "https://github.com/BotStudios/Jet-Brawley/issues"
+  },
+  "homepage": "https://github.com/BotStudios/Jet-Brawley#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.5.0",
+    "axios": "^0.27.2",
+    "canvas": "^2.9.3",
+    "chartjs-node-canvas": "^4.1.6",
+    "discord-api-types": "^0.36.1",
+    "discord.js": "^13.8.1",
+    "mongoose": "^6.4.4",
+    "node-cache": "^5.1.2"
+  }
+}
