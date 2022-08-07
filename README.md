@@ -27,8 +27,11 @@ Jet Brawley bot started as a close source project by the owner Joe, but soon, du
 
 ## Credits
 > - Huge thanks to our contributors ([@w3cy](https://github.com/w3cy), [@leecheeyong](https://github.com/leecheeyong))
-> - Also some people who helped us out during the development ([@1998CR](https://twitter.com/1998_Royale) - Tools to upload and use custom emotes, [@tryso](https://twitter.com/trysonova))
+> - Also some people who helped us out during the development ([@1998CR](https://twitter.com/1998_Royale) - Tools to upload and use custom emotes, [@tryso](https://twitter.com/trysonova) - For the superb private APIs and inspiration)
 > - And all the users who use our bot
 
+## License
+> This project is available as open source under the terms of the [GPL-3.0 License](/LICENSE)
+> - Please credit the author, contributors and a link to this repository as well as the bot - Jet Brawley, if you use any piece of code in this project.
 
 
