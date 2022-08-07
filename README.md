@@ -35,7 +35,7 @@ Jet Brawley bot started as a close source project by the owner Joe, but soon, du
 ## Credits
 > - Huge thanks to our contributors ([@w3cy](https://github.com/w3cy), [@leecheeyong](https://github.com/leecheeyong))
 > - Also some people who helped us out during the development ([@1998CR](https://twitter.com/1998_Royale) - Tools to upload and use custom emotes, [@tryso](https://twitter.com/trysonova) - For the superb private APIs and inspiration)
-> - Thanks [BrawlAPI](https://brawlapi.com), by the [Brawlify](https://brawlify.com) from [Henry](https://github.com/henrylq) for their awesome events API with brawler win rate stats
+> - Thanks [BrawlAPI](https://brawlapi.com), from the [Brawlify](https://brawlify.com) by [Henry](https://github.com/henrylq) for their awesome events API with brawler win rate stats
 > - And all the users who use our bot
 
 ## License
