@@ -42,6 +42,9 @@ Jet Brawley bot started as a close source project by the owner Joe, but soon, du
   - Clan
   - Members
   - Save
+  
+## Contributing
+Contributions are welcomed, currently we are planning on updating the bot to discord.js@v14, we highly recommend those who wanted to contribute to help us out with this. Changes that does not make sense will not be accepted. 
 
 ## Credits
 > - Huge thanks to our contributors ([@w3cy](https://github.com/w3cy), [@leecheeyong](https://github.com/leecheeyong))
