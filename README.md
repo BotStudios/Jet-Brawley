@@ -2,8 +2,8 @@
 Jet Brawley, an open source Supercell games stats bot created by [Joe (Chee Yong Lee)](https://github.com/joeleeofficial) and the [BotStudios Team](https://github.com/BotStudios), using `discord.js` in the `node.js` environment with the power of `JavaScript`
 
 > [**Invite Jet Brawley**](https://discord.com/oauth2/authorize?client_id=792311725181239307&scope=bot%20applications.commands) To Your Server & [**Join The Community/Support Server**](https://discord.gg/Q9eMTRM3PH)
-> 
-> We're on [**Twitter**](https://twitter.com/JetBrawley), also check out [**our website**](https://brawley.js.org) (by the way its [**open source**](https://github.com/teambrawley/brawley)).
+
+> We're on [**Twitter**](https://twitter.com/JetBrawley), also check out [**our website**](https://brawley.js.org) (by the way its [**open source**](https://github.com/teambrawley/brawley))
 
 ## History
 Jet Brawley bot started as a closed source project by the owner Joe, but soon, due to the major changes of the API of the Discord as well as the Supercell Game API, we couldn't keep up with the pace and eventually abandoned (not maintaining) the bot for quite some time to take a break, meanwhile, we have considered to shut down the bot because we have lost the interest on both the game and the development of the bot. Luckily enough, we didn't, and eventually put some effort onto fixing and reworking the bot.
