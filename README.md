@@ -22,8 +22,8 @@ Jet Brawley bot started as a closed source project by the owner Joe, but soon, d
 > Important notes for this project/repository
 - Some commands/functions may not be open source, or not available
 - API keys are not provided
-- Setup guide is not provided
-- We don't give support regarding to the setup of this project
+- Setup guide isn't & will not be provided
+- We don't give support regarding to the setup/modified version of this project
 - The source code in this repository is very similar to the Jet Brawley but not 100% the same
 
 ## Available Commands
@@ -46,13 +46,13 @@ Jet Brawley bot started as a closed source project by the owner Joe, but soon, d
   - Save
   
 ## Contributing
-Contributions are welcomed, currently we are planning on updating the bot to discord.js@v14, we highly recommend those who wanted to contribute to help us out with this. Changes that does not make sense will not be accepted. 
+Contributions are always welcome, currently we are planning to update the bot to discord.js@v14, we highly recommend those who wanted to contribute to help us out with this. Changes that does not make sense will not be accepted. 
 
 ## Credits
 > - Huge thanks to our contributors ([@w3cy](https://github.com/w3cy), [@leecheeyong](https://github.com/leecheeyong))
-> - Also some people who helped us out during the development ([@1998CR](https://twitter.com/1998_Royale) - Tools to upload and use custom emotes, [@tryso](https://twitter.com/trysonova) - For the superb private APIs and inspiration)
+> - Also some people who helped us out during the development ([@1998CR](https://twitter.com/NinetyEightCR) - Tools to upload and use custom emotes, [@tryso](https://twitter.com/trysonova) - For the superb private APIs and inspiration)
 > - Thanks [BrawlAPI](https://brawlapi.com), from the [Brawlify](https://brawlify.com) by [Henry](https://github.com/henrylq) for their awesome events API with brawler win rate stats
-> - And all the users who use our bot
+> - And all the users who uses & supported the development of our bot
 
 ## License
 > This project is available as open source under the terms of the [GPL-3.0 License](/LICENSE)
