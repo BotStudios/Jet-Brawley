@@ -1,12 +1,20 @@
 const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
+const { createCanvas, loadImage } = require('canvas');
+
 
 module.exports = {
     name: 'coc-profile',
     execute: async ({ interaction, fetchAPI, cocDB, filterTag, useEmote, delay, Embed }) => {
-        var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+               var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+        var user = interaction.options.getUser('user') ? (interaction.options.getUser('user'))?.id : '';
+        var player;
         try {
         await interaction.deferReply();
         if(!tag) tag = (await cocDB.findOne({ user: `${interaction.user.id}` }))?.tag;
+        if(user) tag = (await cocDB.findOne({ user: `${user}` }))?.tag;
+        if(user && !tag) return interaction.editReply({
+            embeds: [ new MessageEmbed().setDescription('This user does not have a saved tag.') ]
+        });
         if(!tag) return interaction.editReply({
                     embeds: [ new MessageEmbed().setDescription(`You haven't save an in-game tag for Clash Of Clans`)],
         });
@@ -21,25 +29,25 @@ module.exports = {
         .setTitle(`${name} | ${decodeURIComponent(playerTag)} ${useEmote('smilebs')}`)
         .setAuthor({ name: `${interaction.user.tag}`, icon: interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 }) })
         .setColor('#7c8cf7')
-        .addField(`**Trophies**`, `${useEmote('trophy')} ${trophies ? trophies : 0 }`, true)
-        .addField(`**Best Trophies**`, `${useEmote('trophy')} ${bestTrophies ? bestTrophies : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Versus Trophies**', `${useEmote('trophy')} ${versusTrophies ? versusTrophies :0}`, true)
-        .addField(`**Versus Wins**`, `${useEmote('soloshowdown')} ${versusBattleWins ? versusBattleWins : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField(`**Town Hall Level**`, `${useEmote('duoshowdown')} ${townHallLevel ? townHallLevel : 0}`, true)
-        .addField(`**Builder Hall Level**`, `${useEmote('3v3')} ${builderHallLevel ? builderHallLevel : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Attack Wins**', `${useEmote('brawler')} ${attackWins ? attackWins : 0}`, true)
-        .addField('**Defense Wins**', `${useEmote('brawler')} ${defenseWins ? defenseWins : 0}`, true)
-        .addField('\u200B', '_ _', true) 
-        .addField('Unlocked Troops/Spells', `${troops ? troops.length : 0}/${spells ? spells.length : 0}`, true)
-        .addField('Experience Level', `${expLevel ? expLevel : 0}`, true)
-        .addField('\u200B', '_ _', true) 
-        .addField('**Donations/Received**', `${donations}/${donationsReceived}`, true)
-        .addField('**Clan**', `${useEmote('club')} ${clan ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Unlocked Heroes**', `${heroes ? heroes.map(hero => `${hero.name} \`Level ${hero.level}\``).join("\n") : 'None'}`, false)
+        .addFields({ name: `**Trophies**`, value: `${useEmote('trophy')} ${trophies ? trophies : 0 }`, inline: true })
+        .addFields({ name: `**Best Trophies**`, value: `${useEmote('trophy')} ${bestTrophies ? bestTrophies : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Versus Trophies**', value: `${useEmote('trophy')} ${versusTrophies ? versusTrophies :0}`, inline: true })
+        .addFields({ name: `**Versus Wins**`, value: `${useEmote('soloshowdown')} ${versusBattleWins ? versusBattleWins : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: `**Town Hall Level**`, value: `${useEmote('duoshowdown')} ${townHallLevel ? townHallLevel : 0}`, inline: true })
+        .addFields({ name: `**Builder Hall Level**`, value: `${useEmote('3v3')} ${builderHallLevel ? builderHallLevel : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Attack Wins**', value: `${useEmote('brawler')} ${attackWins ? attackWins : 0}`, inline: true })
+        .addFields({ name: '**Defense Wins**', value: `${useEmote('brawler')} ${defenseWins ? defenseWins : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true }) 
+        .addFields({ name: 'Unlocked Troops/Spells', value: `${troops ? troops.length : 0}/${spells ? spells.length : 0}`, inline: true })
+        .addFields({ name: 'Experience Level', value: `${expLevel ? expLevel : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true }) 
+        .addFields({ name: '**Donations/Received**', value: `${donations}/${donationsReceived}`, inline: true })
+        .addFields({ name: '**Clan**', value: `${useEmote('club')} ${clan ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Unlocked Heroes**', value: `${heroes ? heroes.map(hero => `${hero.name} \`Level ${hero.level}\``).join("\n") : 'None'}`, inline: false })
        .setTimestamp();   
     
        await interaction.editReply({
