@@ -1,10 +1,10 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
 
 
 module.exports = {
     name: 'cr-profile',
-    execute: async ({ interaction, fetchAPI, crDB, filterTag, useEmote, delay, Embed }) => {
+    execute: async ({ interaction, fetchAPI, crDB, filterTag, useEmote, delay, msgembed }) => {
                var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
         var user = interaction.options.getUser('user') ? (interaction.options.getUser('user'))?.id : '';
         var player;
@@ -13,10 +13,10 @@ module.exports = {
         if(!tag) tag = (await crDB.findOne({ user: `${interaction.user.id}` }))?.tag;
         if(user) tag = (await crDB.findOne({ user: `${user}` }))?.tag;
         if(user && !tag) return interaction.editReply({
-            embeds: [ new MessageEmbed().setDescription('This user does not have a saved tag.') ]
+            embeds: [ new EmbedBuilder().setDescription('This user does not have a saved tag.') ]
         });
         if(!tag) return interaction.editReply({
-                    embeds: [ new MessageEmbed().setDescription(`You haven't save an in-game tag for Clash Royale`)],
+                    embeds: [ new EmbedBuilder().setDescription(`You haven't save an in-game tag for Clash Royale`)],
         });
         const data = await fetchAPI({
             type: 'cr',
@@ -25,7 +25,7 @@ module.exports = {
         const { name, trophies, bestTrophies, expLevel, currentDeck, cards, wins, losses, battleCount, threeCrownWins, totalDonations, arena, expPoints, currentFavouriteCard, clan } = data;
         const playerTag = data?.tag;
     
-        const profileEmbed = (Embed())
+        const profileEmbed = (msgembed())
         .setTitle(`${name} | ${decodeURIComponent(playerTag)} ${useEmote('smilebs')}`)
         .setAuthor({ name: `${interaction.user.tag}`, icon: interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 }) })
         .setColor('#7c8cf7')
@@ -55,7 +55,7 @@ module.exports = {
         ctx.drawImage(img,y,img.height == 330 ? 15 : 0, 137, img.height > 330 ? 183 : 163); y = y + 133;
        }
     }catch(e) {}
-      const attach = new MessageAttachment(await canvas.createPNGStream(), 'deck.png');
+      const attach = new AttachmentBuilder(await canvas.createPNGStream(), { name: 'deck.png' });
       profileEmbed.setImage('attachment://deck.png');
       await interaction.editReply({
         embeds: [profileEmbed],
@@ -66,7 +66,7 @@ module.exports = {
         console.log(e)
         await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                 .setDescription('Something Went Wrong !')
             ]
         })
