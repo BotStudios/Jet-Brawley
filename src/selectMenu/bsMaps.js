@@ -1,8 +1,8 @@
-const { MessageEmbed, MessageActionRow, MessageAttachment } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
 module.exports = {
     name: 'bsMapsList',
-    execute: async ({ interaction, useEmote, axios, cache, Embed }) => {
+    execute: async ({ interaction, useEmote, axios, cache, msgembed }) => {
         if(!interaction.isSelectMenu())return;
         var name = cache.get(`${interaction.values[0]}`);
         if(!name) return;
@@ -13,13 +13,13 @@ module.exports = {
         }
         var map = maps?.find(m => m?.name?.toLowerCase() === name.toLowerCase());
         if(!map) return;
-        const embed = (Embed()).setTitle(`${map?.name}`).setColor('#34eb6b').setTimestamp();
+        const embed = (msgembed()).setTitle(`${map?.name}`).setColor('#34eb6b').setTimestamp();
         try {
         const image = await loadImage(map?.imageUrl);
         const canvas = createCanvas(image.width, image.height);
         const ctx = canvas.getContext('2d');
         ctx.drawImage(image, 0, 0);
-        const attach = new MessageAttachment(await canvas.createPNGStream(), 'map.png');
+        const attach = new AttachmentBuilder(await canvas.createPNGStream(), { name: 'map.png' });
         embed.setImage('attachment://map.png');
         await interaction.update({
             embeds: [embed],
@@ -28,7 +28,7 @@ module.exports = {
         });
         }catch(e) {
             await interaction.update({
-                embeds: [new MessageEmbed().setDescription(`Couldn't find map \`${name}\`.`)],
+                embeds: [new EmbedBuilder().setDescription(`Couldn't find map \`${name}\`.`)],
             });
         }
         }
