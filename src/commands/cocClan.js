@@ -3,11 +3,16 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 module.exports = {
     name: 'coc-clan',
     execute: async ({ interaction, fetchAPI, cocDB, filterTag, useEmote, Embed }) => {
-        var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+               var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+        var user = interaction.options.getUser('user') ? (interaction.options.getUser('user'))?.id : '';
         var player;
         try {
         await interaction.deferReply();
         if(!tag) tag = (await cocDB.findOne({ user: `${interaction.user.id}` }))?.tag;
+        if(user) tag = (await cocDB.findOne({ user: `${user}` }))?.tag;
+        if(user && !tag) return interaction.editReply({
+            embeds: [ new MessageEmbed().setDescription('This user does not have a saved tag.') ]
+        });
         if(!tag && interaction?.options?.getString('tag')) return interaction.editReply({
                     embeds: [ new MessageEmbed().setDescription(`You haven't save an in-game tag for Clash Of Clans`)],
         }); 
@@ -32,24 +37,24 @@ module.exports = {
         .setTitle(`${name} | ${decodeURIComponent(clanTag)} ${useEmote('club')} `)
         .setAuthor({ name: `${interaction.user.tag}`, icon: interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 }) })
         .setColor('#ac77ed')
-        .addField(`**Trophies**`, `${useEmote('trophy')} ${trophies ? trophies : 0 }`, true)
-        .addField(`**Required Trophies**`, `${useEmote('trophy')} ${requiredTrophies ? requiredTrophies : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**R. Versus Trophies**', `${useEmote('brawler')} ${requiredVersusTrophies ? requiredVersusTrophies : 0}`, true)
-        .addField('**R. TownHall Level**', `${useEmote('brawler')} ${requiredTownhallLevel ? requiredTownhallLevel : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Total Members**', `${useEmote('teamleague')} ${memberList.length ? memberList.length : 0}`, true)
-        .addField('**Type**', `${type == 'open' ? `${useEmote('status_green')} Open` : type == 'close' ? `${useEmote('status_red')} Closed` : `${useEmote('status_yellow')} Invite Only`}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Clan Level/Points**', `${useEmote('brawler')} ${clanLevel ? clanLevel : 0}/${clanPoints ? clanPoints : 0}`, true)
-        .addField('**War Wins/Ties/Losses**', `${useEmote('brawler')} ${warWins ? warWins : 0}/${warTies ? warTies : 0}/${warLosses ? warLosses : 0}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Location**', `${useEmote('brawler')} ${location ? location.name : 'Unknown'}`, true)
-        .addField('**War Frequency**', `${useEmote('brawler')} ${warFrequency ? `${warFrequency[0].toUpperCase()}${warFrequency.slice(1)}` : 'None'}`, true)
-        .addField('\u200B', '_ _', true)
-        .addField('**Senior/Co-Leader Count**', `${useEmote('brawler')} ${seniorCount ? seniorCount : 0}/${coLeaderCount ? coLeaderCount : 0}`, true)
-        .addField('**Leader**', `${useEmote('brawler')} ${leader?.name} | ${leader?.tag}`, true)
-        .addField('\u200B', '_ _', true)
+        .addFields({ name: `**Trophies**`, value: `${useEmote('trophy')} ${trophies ? trophies : 0 }`,inline: true })
+        .addFields({ name: `**Required Trophies**`, value: `${useEmote('trophy')} ${requiredTrophies ? requiredTrophies : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**R. Versus Trophies**', value: `${useEmote('brawler')} ${requiredVersusTrophies ? requiredVersusTrophies : 0}`, inline: true })
+        .addFields({ name: '**R. TownHall Level**', value: `${useEmote('brawler')} ${requiredTownhallLevel ? requiredTownhallLevel : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Total Members**', value: `${useEmote('teamleague')} ${memberList.length ? memberList.length : 0}`, inline: true })
+        .addFields({ name: '**Type**', value: `${type == 'open' ? `${useEmote('status_green')} Open` : type == 'close' ? `${useEmote('status_red')} Closed` : `${useEmote('status_yellow')} Invite Only`}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Clan Level/Points**', value: `${useEmote('brawler')} ${clanLevel ? clanLevel : 0}/${clanPoints ? clanPoints : 0}`, inline: true })
+        .addFields({ name: '**War Wins/Ties/Losses**', value: `${useEmote('brawler')} ${warWins ? warWins : 0}/${warTies ? warTies : 0}/${warLosses ? warLosses : 0}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Location**', value: `${useEmote('brawler')} ${location ? location.name : 'Unknown'}`, inline: true })
+        .addFields({ name: '**War Frequency**', value: `${useEmote('brawler')} ${warFrequency ? `${warFrequency[0].toUpperCase()}${warFrequency.slice(1)}` : 'None'}`,inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
+        .addFields({ name: '**Senior/Co-Leader Count**', value: `${useEmote('brawler')} ${seniorCount ? seniorCount : 0}/${coLeaderCount ? coLeaderCount : 0}`, inline: true })
+        .addFields({ name: '**Leader**', value: `${useEmote('brawler')} ${leader?.name} | ${leader?.tag}`, inline: true })
+        .addFields({ name: '\u200B', value: '_ _', inline: true })
         .setDescription(`\`\`\`${description ? description : 'No Description'}\`\`\``)
        .setTimestamp();
       
