@@ -1,5 +1,5 @@
-const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const { Client, GatewayIntentBits, Partials, Collection, EmbedBuilder } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 const axios = require('axios');
 const fs = require('fs');
 const mongoose = require('mongoose');
@@ -27,8 +27,8 @@ const filterTag = (tag) => {
     if(tag && !tag.startsWith('#')) return `${encodeURIComponent(`#${tag}`)}`;
     return encodeURIComponent(tag);
 } 
-const Embed = (obj) => {
-    return new MessageEmbed({ ...obj, footer: { text: `Made With Love 💖 By @Joe Lee` } });
+const msgembed = (obj) => {
+    return new EmbedBuilder({  ...obj, url: 'https://brawley.js.org', footer: { text: `Made With Love 💖 By @Joe Lee` } });
 }
 const delay = () => { return new Promise(resolve => setTimeout(resolve, 1000)); }
 const fetchAPI = async ({ type, endpoint }) => {
@@ -72,7 +72,7 @@ client.on('interactionCreate', async interaction => {
 	const command = client.commands.get(`${interaction.commandName}${interaction?.options?._subcommand ? `-${interaction.options._subcommand}` : ''}`);
 	if (!command) return;
 	try {
-		await command.execute({ interaction, cache, fetchAPI, cocDB, useEmoteObj, crDB, bsDB, client, axios, filterTag, useEmote, delay, Embed });
+		await command.execute({ interaction, cache, fetchAPI, cocDB, useEmoteObj, crDB, bsDB, client,  client, axios, filterTag, useEmote, delay, msgembed });
 	} catch (error) {
 		console.error(error);
 }
@@ -84,7 +84,7 @@ client.on('interactionCreate', async interaction => {
     if(!id) return;
     const button = client.buttons.get(`${id}`);
     try {
-        await button.execute({ interaction, client, cache, fetchAPI, useEmote, filterTag, Embed, axios, delay, useEmoteObj });
+        await button.execute({ interaction, fetchAPI, cache, client, useEmote, filterTag, msgembed, axios, delay, useEmoteObj });
     }catch(e) {
         console.log(e)
     }
@@ -96,7 +96,7 @@ client.on('interactionCreate', async interaction => {
     if(!id) return;
     const selectMenu = client.selectMenu.get(`${id}`);
     try {
-        await selectMenu.execute({ interaction, cache, axios, fetchAPI, useEmoteObj, filterTag, Embed, useEmote, delay, args: interaction?.customId.split("-") });
+        await selectMenu.execute({ interaction, client, cache, axios, fetchAPI, useEmoteObj, filterTag, msgembed, useEmote, delay, args: interaction?.customId.split("-") });
     }catch(e) {
         console.log(e)
     }
@@ -231,4 +231,9 @@ const commands = [
 })();
 }
 
-
+// Handcoded By Chee Yong Lee & Bot Studios
+// View License: https://github.com/BotStudios/Jet-Brawley/blob/main/LICENSE
+// This project is available as open source under the terms of the GPL-3.0 License
+// Email: tojoeleeofficial@gmail.com
+// Website: https://joe.js.org
+// Twitter: @JetBrawley (https://twitter.com/JetBrawley)
