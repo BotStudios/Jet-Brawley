@@ -1,30 +1,38 @@
 {
   "name": "test-discord-bot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "bs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BotStudios/Jet-Brawley.git"
+    "url": "git+https://github.com/leecheeyong/"
   },
   "keywords": [],
-  "author": "Lee Chee Yong <tojoeleeofficial@gmail.com> (https://joe.js.org)",
-  "license": "SEE /LICENSE",
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BotStudios/Jet-Brawley/issues"
+    "url": "https://github.com/leecheeyong/"
   },
-  "homepage": "https://github.com/BotStudios/Jet-Brawley#readme",
+  "homepage": "https://github.com/leecheeyong/Test-Discord-Bot#readme",
   "dependencies": {
-    "@discordjs/rest": "^0.5.0",
     "axios": "^0.27.2",
     "canvas": "^2.9.3",
     "chartjs-node-canvas": "^4.1.6",
     "discord-api-types": "^0.36.1",
-    "discord.js": "^13.11.0",
-    "mongoose": "^6.6.5",
-    "node-cache": "^5.1.2"
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.7",
+    "os": "^0.1.2",
+    "systeminformation": "^5.12.3"
+  },
+  "description": "",
+    "devDependencies": {
+    "node": "^16.14.0"
   }
 }
