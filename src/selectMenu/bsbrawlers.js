@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageSelectMenu } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder } = require('discord.js');
 
 module.exports = {
     name: 'brawlerList',
@@ -10,8 +10,8 @@ module.exports = {
         }).catch(err => {});
         const { name, badgeId, brawlers } = data;
         const playerTag = data.tag;
-        var brawlerList = new MessageActionRow().addComponents( 
-         new MessageSelectMenu()
+        var brawlerList = new ActionRowBuilder().addComponents( 
+         new SelectMenuBuilder()
         .setCustomId(`brawlerList-${playerTag}`)
         .setPlaceholder('Choose a category')
         .addOptions([
@@ -78,13 +78,13 @@ module.exports = {
             for (i = 0; i < a.length; i += 2) {
              both.push(a.slice(i, i + 2).join(`_ _`));
             }
-            if(b == 0) return embeds.push(new MessageEmbed().setTitle(`${name} | ${playerTag}'s Brawlers`).setColor('#32a8a2').setDescription(`${both.join("\n")}`));
-            if(b + 1 == c.length) return embeds.push(new MessageEmbed({
+            if(b == 0) return embeds.push(new EmbedBuilder().setTitle(`${name} | ${playerTag}'s Brawlers`).setColor('#32a8a2').setDescription(`${both.join("\n")}`));
+            if(b + 1 == c.length) return embeds.push(new EmbedBuilder({
                 footer: {
                     text: `${brawlers.length} brawlers - Made With Love 💖 By @Joe Lee`
                 }
             }).setDescription(`${both.join("\n")}`).setColor('#32a8a2').setTimestamp());
-            embeds.push(new MessageEmbed().setDescription(`${both.join("\n")}`).setColor('#32a8a2'))
+            embeds.push(new EmbedBuilder().setDescription(`${both.join("\n")}`).setColor('#32a8a2'))
         });
         await interaction.update({
         embeds,
