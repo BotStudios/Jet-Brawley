@@ -1,15 +1,20 @@
-const { MessageEmbed, MessageActionRow, MessageSelectMenu } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder } = require('discord.js');
 
 module.exports = {
     name: 'bs-brawlers',
     execute: async ({ interaction, fetchAPI, bsDB, filterTag, useEmote, useEmoteObj }) => {
-        var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+       var tag = interaction.options.getString('tag') ? encodeURIComponent(interaction.options.getString('tag')) : '';
+        var user = interaction.options.getUser('user') ? (interaction.options.getUser('user'))?.id : '';
         var player;
         try {
         await interaction.deferReply();
         if(!tag) tag = (await bsDB.findOne({ user: `${interaction.user.id}` }))?.tag;
-        if(!tag && interaction?.options?.getString('tag')) return interaction.editReply({
-                    embeds: [ new MessageEmbed().setDescription(`You haven't save an in-game tag for Brawl Stars`)],
+        if(user) tag = (await bsDB.findOne({ user: `${user}` }))?.tag;
+        if(user && !tag) return interaction.editReply({
+            embeds: [ new EmbedBuilder().setDescription('This user does not have a saved tag.') ]
+        });
+        if(!tag)  return interaction.editReply({
+                    embeds: [ new EmbedBuilder().setDescription(`You haven't save an in-game tag for Brawl Stars`)],
         }); 
         var data = await fetchAPI({
             type: 'bs',
@@ -17,8 +22,8 @@ module.exports = {
         }).catch(err => {});
         const { name, badgeId, brawlers } = data;
         const playerTag = data.tag;
-        var brawlerList = new MessageActionRow().addComponents( 
-         new MessageSelectMenu()
+        var brawlerList = new ActionRowBuilder().addComponents( 
+         new SelectMenuBuilder()
         .setCustomId(`brawlerList-${playerTag}`)
         .setPlaceholder('Choose a category')
         .addOptions([
@@ -44,13 +49,13 @@ module.exports = {
             for (i = 0; i < a.length; i += 2) {
              both.push(a.slice(i, i + 2).join(`_ _`));
             }
-            if(b == 0) return embeds.push(new MessageEmbed().setTitle(`${name} | ${playerTag}'s Brawlers`).setColor('#32a8a2').setDescription(`${both.join("\n")}`));
-            if(b + 1 == c.length) return embeds.push(new MessageEmbed({
+            if(b == 0) return embeds.push(new EmbedBuilder().setTitle(`${name} | ${playerTag}'s Brawlers`).setColor('#32a8a2').setDescription(`${both.join("\n")}`));
+            if(b + 1 == c.length) return embeds.push(new EmbedBuilder({
                 footer: {
                     text: 'Made With Love 💖 By @Joe Lee'
                 }
             }).setDescription(`${both.join("\n")}`).setColor('#32a8a2').setTimestamp());
-            embeds.push(new MessageEmbed().setDescription(`${both.join("\n")}`).setColor('#32a8a2'))
+            embeds.push(new EmbedBuilder().setDescription(`${both.join("\n")}`).setColor('#32a8a2'))
         });
         await interaction.editReply({
         embeds,
@@ -61,7 +66,7 @@ module.exports = {
         console.log(e)
         await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                 .setDescription('Something Went Wrong !')
             ]
         })
