@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'coc-save',
     execute: async ({ interaction, fetchAPI, cocDB, useEmote, filterTag }) => {
@@ -10,7 +10,7 @@ module.exports = {
         });
         if(!tag && !db) return await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setDescription(`
                        \`Please provide a Clash Of Clans in-game player tag to save\`
                     `)
@@ -20,7 +20,7 @@ module.exports = {
         });
         if(!tag && db) return await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setDescription(`
                     \`To overwite your current saved tag, run this command again with another in-game tag\`
 
@@ -42,7 +42,7 @@ module.exports = {
         }).save();
            return await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setTitle('Successfully saved !')
                     .setDescription(`Your in-game tag (\`${tag}\`) was saved !`)
             ],
@@ -58,7 +58,7 @@ module.exports = {
         });
         return await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setTitle('Successfully saved !')
                     .setDescription(`Your in-game tag (\`${tag}\`) was saved & overwrited !`)
             ],
@@ -67,7 +67,7 @@ module.exports = {
         }
             return await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                         .setDescription(`This tag (\`${tag}\`) does not exist !`)
                 ], ephermal: true
             });
@@ -75,7 +75,7 @@ module.exports = {
 }catch(e) {
     return await interaction.editReply({
         embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
                 .setDescription(`This tag (\`${tag}\`) does not exist !`)
         ], ephermal: true
     });
