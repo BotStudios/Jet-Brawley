@@ -48,7 +48,7 @@ Jet Brawley bot started as a closed source project by the owner Joe, but soon, d
   - Save
   
 ## Contributing
-Contributions are always welcome, changes that don't make sense will not be accepted. 
+Contributions are always welcome, changes that don't make sense will not be accepted. We'd accept bug fixes & feature implementations that are clearly related to the intention of Jet Brawley bot.
 
 ## Credits
  - Huge thanks to our contributors ([@w3cy](https://github.com/w3cy), [@leecheeyong](https://github.com/leecheeyong))
