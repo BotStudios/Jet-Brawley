@@ -12,7 +12,7 @@ Jet Brawley bot started as a closed source project by the owner Joe, but soon, d
 
 ## About
 > Wonder why we turn this project into an open source ? Here's why:
-- To help others in their development
+- To help others on developing better bots
 - To help others to understand how things work
 - Most importantly, we love open source
 
