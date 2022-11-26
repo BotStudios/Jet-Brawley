@@ -8,7 +8,7 @@ Jet Brawley, an open source Supercell games stats bot created by [Joe (Chee Yong
 > Read our [**privacy policy**](https://brawley.js.org/privacy#about) if you're concerned about that
 
 ## History
-Jet Brawley bot started as a closed source project by the owner Joe, but soon, due to the major changes of the API of the Discord as well as the Supercell Game API, we couldn't keep up with the pace and eventually abandoned (not maintaining) the bot for quite some time to take a break, meanwhile, we have considered to shut down the bot because we have lost the interest on both the game and the development of the bot. Luckily enough, we didn't, and eventually put some effort onto fixing and reworking the bot.
+Jet Brawley bot started as a closed source project by the owner Joe, but soon, due to the major changes of the Discord API as well as the Supercell Game API, we couldn't keep up with the pace and eventually abandoned (not maintaining) the bot for quite some time to take a break, meanwhile, we have considered to shut down the bot because we have lost the interest on both the game and the development of the bot. Luckily enough, we didn't, and eventually put some effort onto fixing and reworking the bot.
 
 ## About
 > Wonder why we turn this project into an open source ? Here's why:
