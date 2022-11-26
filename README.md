@@ -58,6 +58,6 @@ Contributions are always welcome, changes that don't make sense will not be acce
 
 ## License
 > This project is available as open source under the terms of the [GPL-3.0 License](/LICENSE)
-> - Please credit the author, contributors and a link to this repository as well as the bot - Jet Brawley, if you use any piece of code in this project.
+> - Please credit the author, contributors and a link to this repository as well as the bot - Jet Brawley, if you use any piece of code from this project.
 
 
