@@ -42,7 +42,7 @@ module.exports = {
        .addFields({ name: '**Arena**', value: `${useEmote('brawler')} ${arena ? arena?.name : 0}`, inline: true })
        .addFields({ name: '\u200B', value: '_ _', inline: true }) 
        .addFields({ name: '**Favorite Card**', value: `${currentFavouriteCard ? currentFavouriteCard.name : 'None'}`, inline:true })
-       .addFields({ name: '**Clan**', value: `${useEmote('club')} ${clan ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`,inline: true})
+       .addFields({ name: '**Clan**', value: `${useEmote('club')} ${clan?.name ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`,inline: true})
           .addFields({ name: '\u200B', value: '_ _', inline: true })
        .setTimestamp();
 
