@@ -36,7 +36,7 @@ module.exports = {
        .addFields({ name: `**3v3 Victories**`, value: `${useEmote('3v3')} ${data["3vs3Victories"] ? data["3vs3Victories"] : 0}`, inline: true })
         .addFields({ name: '\u200B', value: '_ _', inline: true })
        .addFields({ name: '**Total Brawlers**', value: `${useEmote('brawler')} ${brawlers.length ? brawlers.length : 0}`, inline: true })
-         .addFields({ name: '**Club**', value: `${useEmote('club')} ${club ? `${club.name} - ${club.tag}` : 'Not In A Club'}`, inline: true })
+         .addFields({ name: '**Club**', value: `${useEmote('club')} ${club?.name ? `${club.name} - ${club.tag}` : 'Not In A Club'}`, inline: true })
           .addFields({ name: '\u200B', value: '_ _', inline: true })
        .setTimestamp()
        profileEmbed.addFields({ name: '**Qualified For Championship Challenge**', value: `${isQualifiedFromChampionshipChallenge ? `${isQualifiedFromChampionshipChallenge == 'true' ? `${useEmote('special')} Yes` : 'No'}` : 'No'}`, inline: false });
