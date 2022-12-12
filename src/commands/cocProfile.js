@@ -45,7 +45,7 @@ module.exports = {
         .addFields({ name: 'Experience Level', value: `${expLevel ? expLevel : 0}`, inline: true })
         .addFields({ name: '\u200B', value: '_ _', inline: true }) 
         .addFields({ name: '**Donations/Received**', value: `${donations}/${donationsReceived}`, inline: true })
-        .addFields({ name: '**Clan**', value: `${useEmote('club')} ${clan ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`, inline: true })
+        .addFields({ name: '**Clan**', value: `${useEmote('club')} ${clan?.name ? `${clan.name} - ${clan.tag}` : 'Not In A Clan'}`, inline: true })
         .addFields({ name: '\u200B', value: '_ _', inline: true })
         .addFields({ name: '**Unlocked Heroes**', value: `${heroes ? heroes.map(hero => `${hero.name} \`Level ${hero.level}\``).join("\n") : 'None'}`, inline: false })
        .setTimestamp();   
