@@ -1,14 +1,14 @@
 {
-  "name": "test-discord-bot",
+  "name": "jet-brawley-discord-bot",
   "version": "1.0.0",
-  "main": "bs.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leecheeyong/"
+    "url": "git+https://github.com/BotStudios/Jet-Brawley"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/leecheeyong/"
   },
-  "homepage": "https://github.com/leecheeyong/Test-Discord-Bot#readme",
+  "homepage": "https://github.com/BotStudios/Jet-Brawley#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "canvas": "^2.9.3",
