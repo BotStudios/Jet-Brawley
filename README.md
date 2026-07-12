@@ -1,5 +1,5 @@
 # Jet Brawley
-Jet Brawley, an open source Supercell games stats bot created by [Joe (Chee Yong Lee)](https://github.com/joeleeofficial) and the [BotStudios Team](https://github.com/BotStudios), using `discord.js` in the `node.js` environment with the power of `JavaScript`
+Jet Brawley, an open source Supercell games stats bot created by [Joe](https://github.com/leecheeyong) and the [BotStudios Team](https://github.com/BotStudios), using `discord.js` in the `node.js` environment with the power of `JavaScript`
 
 > [**Invite Jet Brawley**](https://discord.com/oauth2/authorize?client_id=792311725181239307&scope=bot%20applications.commands) to your server & [**Join The Community/Support Server**](https://discord.gg/Q9eMTRM3PH)
 > 
