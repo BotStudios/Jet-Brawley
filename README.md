@@ -7,16 +7,6 @@ Jet Brawley, an open source Supercell games stats bot created by [Joe](https://g
 > 
 > Read our [**privacy policy**](https://brawley.js.org/privacy#about) if you're concerned about that
 
-## About
-> Wonder why we turn this project into an open source ? Here's why:
-- To help others on developing better bots
-- To help others to understand how things work
-- Most importantly, we love open source
-
-**Wonder what's in [`/src`](/src) ?**
-- Every command Jet Brawley has to offer
-- Everything is functioning well
-
 ## Note
 > Important notes for this project/repository
 - Some commands/functions may not be open source, or not available
